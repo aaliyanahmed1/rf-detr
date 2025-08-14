@@ -95,7 +95,7 @@ config = {
     'train_annotations': 'path/to/train.json',
     'val_annotations': 'path/to/val.json'
 }
-
+```
 ## Output Format
 
 Detection results include:
