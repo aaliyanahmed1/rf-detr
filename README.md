@@ -95,14 +95,6 @@ config = {
     'train_annotations': 'path/to/train.json',
     'val_annotations': 'path/to/val.json'
 }
-```
-
-2. Running inference:
-```python
-# Place images in test_images directory
-# Results will be saved in predictions directory
-python inference_rfdetr.py
-```
 
 ## Output Format
 
