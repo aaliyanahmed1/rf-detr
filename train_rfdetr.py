@@ -2,8 +2,6 @@
 
 import os
 from rfdetr import RFDETRBase
-from rfdetr import RFDETRBase  # RF-DETR core class
-from rfdetr import get_model
 import torch
 
 def main():
@@ -13,20 +11,23 @@ def main():
     # 2. Configure your dataset path (must follow COCO format)
     dataset_dir = "dataset"  # contains train/, valid/, test/ subfolders with images + _annotations.coco.json
 
-    # 3. Load the base RF-DETR model
-    model = RFDETRBase()  # loads RF-DETR Base with pretrained weights
+    # 3. Choose the model variant: "nano", "small", "base", "large"
+    model_variant = "nano"  # <-- paste your desired model name here
 
-    # 4. Fine-tune the model on your dataset
+    # 4. Load the selected RF-DETR model with pretrained weights
+    model = RFDETRBase(variant=model_variant)  # loads chosen variant with pretrained weights
+
+    # 5. Fine-tune the model on your dataset
     model.train(
         dataset_dir=dataset_dir,
         epochs=10,
         batch_size=4,
         grad_accum_steps=4,
         lr=1e-4,
-        output_dir="rf_detr_finetuned"
+        output_dir=f"rf_detr_finetuned_{model_variant}"
     )
 
-    print("Training completed. Model and checkpoints saved to 'rf_detr_finetuned'.")
+    print(f"Training completed. Model and checkpoints saved to 'rf_detr_finetuned_{model_variant}'.")
 
 if __name__ == "__main__":
     main()
